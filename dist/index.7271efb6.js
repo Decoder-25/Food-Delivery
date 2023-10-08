@@ -27449,11 +27449,22 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react"); // hooks are basically javascript funtions that has magical powers in dom manipaulations
 var _restaurantCard = require("./RestaurantCard");
 var _restaurantCardDefault = parcelHelpers.interopDefault(_restaurantCard);
 var _mockData = require("../utils/mockData");
 var _mockDataDefault = parcelHelpers.interopDefault(_mockData);
+var _s = $RefreshSig$();
+//use state is a hook to use in the state management in react
+//where we always are updating something in data layer and it syncs with the ui layer to show it to the user.
+// Virtual DOM : It is a representation of an actual DOM in a javascript object
+// Reconcillation Algorithm (React fibre) : In react 16, New algorithm came up into the picture 
+//                                          to find out a new way to difference between the old DOM and
+//                                          The new DOM and then update according to this in UI layer.
+//Link : https://github.com/acdlite/react-fiber-architecture
 const Body = ()=>{
+    _s();
+    const [ListOfRestaurant, setListOfRestaurant] = (0, _react.useState)((0, _mockDataDefault.default)); // Usestate is basically when we are updating our state variable, react re render the ui automatically.
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "body",
         children: [
@@ -27461,38 +27472,43 @@ const Body = ()=>{
                 className: "filter",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                     className: "filter-btn",
+                    onClick: ()=>{
+                        const filteredList = ListOfRestaurant.filter((res)=>res.avgRating >= 4.5); //filter we use to filter out in certain elements
+                        setListOfRestaurant(filteredList); // where we want to update the ui, we use set funtion on it.
+                    },
                     children: "Top Rated Restaurants"
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 7,
+                    lineNumber: 22,
                     columnNumber: 37
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 7,
+                lineNumber: 22,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "res-container",
-                children: (0, _mockDataDefault.default).map((restaurant)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
+                children: ListOfRestaurant.map((restaurant)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurantCardDefault.default), {
                         resData: restaurant
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 10,
+                        lineNumber: 30,
                         columnNumber: 21
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 8,
+                lineNumber: 28,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 6,
+        lineNumber: 21,
         columnNumber: 9
     }, undefined);
 };
+_s(Body, "9RU4POS744LF4fulBGEc8WYh9W4=");
 _c = Body;
 exports.default = Body;
 var _c;
@@ -27503,7 +27519,7 @@ $RefreshReg$(_c, "Body");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./RestaurantCard":"bMboU","../utils/mockData":"iOpE9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bMboU":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","./RestaurantCard":"bMboU","../utils/mockData":"iOpE9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"bMboU":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ffb1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
