@@ -27465,6 +27465,17 @@ var _s = $RefreshSig$();
 const Body = ()=>{
     _s();
     const [ListOfRestaurant, setListOfRestaurant] = (0, _react.useState)((0, _mockDataDefault.default)); // Usestate is basically when we are updating our state variable, react re render the ui automatically.
+    (0, _react.useEffect)(()=>{
+        fetchData();
+    }, []);
+    const fetchData = async ()=>{
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.47925795332987&lng=88.39425399899483&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING" //this is swiggy's api, we are calling it by downloading CORS extension to avoid the browser's CORS blocker.
+        );
+        const json = await data.json();
+        console.log(json);
+        //optional chaining
+        setListOfRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "body",
         children: [
@@ -27479,12 +27490,12 @@ const Body = ()=>{
                     children: "Top Rated Restaurants"
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 22,
+                    lineNumber: 37,
                     columnNumber: 37
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 22,
+                lineNumber: 37,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27493,22 +27504,22 @@ const Body = ()=>{
                         resData: restaurant
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 30,
+                        lineNumber: 45,
                         columnNumber: 21
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 28,
+                lineNumber: 43,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 21,
+        lineNumber: 36,
         columnNumber: 9
     }, undefined);
 };
-_s(Body, "9RU4POS744LF4fulBGEc8WYh9W4=");
+_s(Body, "t9tXJP0uwXNXNs6egD4Z7GDhFu4=");
 _c = Body;
 exports.default = Body;
 var _c;
@@ -27519,7 +27530,7 @@ $RefreshReg$(_c, "Body");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","./RestaurantCard":"bMboU","../utils/mockData":"iOpE9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react":"21dqq"}],"bMboU":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./RestaurantCard":"bMboU","../utils/mockData":"iOpE9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bMboU":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ffb1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27535,52 +27546,53 @@ const styleCard = {
 };
 const RestaurantCard = (props)=>{
     const { resData } = props;
+    console.log("cloudinaryImageId:", resData.cloudinaryImageId);
     const { name, cuisines, avgRating, areaName, cloudinaryImageId } = resData;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "res-card",
         style: styleCard,
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                class: "res-logo",
+                className: "res-logo",
                 src: (0, _constants.CDN_URL) + cloudinaryImageId,
                 alt: "logo"
             }, void 0, false, {
                 fileName: "src/components/RestaurantCard.js",
-                lineNumber: 13,
+                lineNumber: 15,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
                 children: name
             }, void 0, false, {
                 fileName: "src/components/RestaurantCard.js",
-                lineNumber: 21,
+                lineNumber: 23,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
-                children: cuisines.join(", ")
+                children: Array.isArray(cuisines) ? cuisines.join(", ") : ""
             }, void 0, false, {
                 fileName: "src/components/RestaurantCard.js",
-                lineNumber: 22,
+                lineNumber: 24,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
                 children: avgRating
             }, void 0, false, {
                 fileName: "src/components/RestaurantCard.js",
-                lineNumber: 23,
+                lineNumber: 25,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
                 children: areaName
             }, void 0, false, {
                 fileName: "src/components/RestaurantCard.js",
-                lineNumber: 24,
+                lineNumber: 26,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/RestaurantCard.js",
-        lineNumber: 12,
+        lineNumber: 14,
         columnNumber: 9
     }, undefined);
 };

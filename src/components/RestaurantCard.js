@@ -7,11 +7,13 @@ const styleCard = {
 const RestaurantCard = (props) => {
     const { resData } = props;
 
+    console.log("cloudinaryImageId:", resData.cloudinaryImageId);
+
     const { name, cuisines, avgRating, areaName, cloudinaryImageId, } = resData;
     return (
         <div className="res-card" style={styleCard}>
             <img
-                class="res-logo"
+                className="res-logo"
                 src={
                     CDN_URL +
                     cloudinaryImageId
@@ -19,7 +21,7 @@ const RestaurantCard = (props) => {
                 alt="logo"
             />
             <h3>{name}</h3>
-            <h4>{cuisines.join(", ")}</h4>
+            <h4>{Array.isArray(cuisines) ? cuisines.join(", ") : ""}</h4>
             <h4>{avgRating}</h4>
             <h4>{areaName}</h4>
         </div>
